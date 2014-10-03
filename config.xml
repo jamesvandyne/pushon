@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.windhavengroup.pushon" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>uapushOn</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="com.urbanairship.production_app_key" value="PRODUCTION_APP_KEY" />
+    <preference name="com.urbanairship.production_app_secret" value="PRODUCTION_APP_SECRET" />
+    <preference name="com.urbanairship.development_app_key" value="2c-cJRqqS3Wc3e7s7mfTiA" />
+    <preference name="com.urbanairship.development_app_secret" value="fhH2tZL-RhunbfYnjg4oBA" />
+    <preference name="com.urbanairship.in_production" value="false" />
+    <preference name="com.urbanairship.enable_push_onlaunch" value="false" />
+    <preference name="com.urbanairship.gcm_sender" value="496792742542" />
+    <feature name="Urban Airship Push Notification Plugin">
+        <param name="id" value="com.urbanairship.phonegap.PushNotification" />
+    </feature>
+    <feature name="Battery">
+        <param name="id" value="org.apache.cordova.battery-status" />
+    </feature>
+    <feature name="Camera">
+        <param name="id" value="org.apache.cordova.camera" />
+    </feature>
+    <feature name="Contacts">
+        <param name="id" value="org.apache.cordova.contacts" />
+    </feature>
+    <feature name="Device">
+        <param name="id" value="org.apache.cordova.device" />
+    </feature>
+    <feature name="Device Motion">
+        <param name="id" value="org.apache.cordova.device-motion" />
+    </feature>
+    <feature name="Device Orientation">
+        <param name="id" value="org.apache.cordova.device-orientation" />
+    </feature>
+    <feature name="Notification">
+        <param name="id" value="org.apache.cordova.dialogs" />
+    </feature>
+    <feature name="File">
+        <param name="id" value="org.apache.cordova.file" />
+    </feature>
+    <feature name="File Transfer">
+        <param name="id" value="org.apache.cordova.file-transfer" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="id" value="org.apache.cordova.geolocation" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="id" value="org.apache.cordova.inappbrowser" />
+    </feature>
+    <feature name="Media">
+        <param name="id" value="org.apache.cordova.media" />
+    </feature>
+    <feature name="Capture">
+        <param name="id" value="org.apache.cordova.media-capture" />
+    </feature>
+    <feature name="Network Information">
+        <param name="id" value="org.apache.cordova.network-information" />
+    </feature>
+    <feature name="Splashscreen">
+        <param name="id" value="org.apache.cordova.splashscreen" />
+    </feature>
+    <feature name="Vibration">
+        <param name="id" value="org.apache.cordova.vibration" />
+    </feature>
+</widget>

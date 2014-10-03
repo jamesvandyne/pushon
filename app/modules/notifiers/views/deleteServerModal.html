@@ -1,0 +1,26 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" ng-bind="title"></h4>
+      </div>
+      <!-- <div class="modal-body" ng-bind="content"></div>-->
+      <div class="modal-body">
+	<form>
+	  <div class="form-group">
+            <label for="urlInput">Url</label>
+            <input type="text" class="form-control" disabled id="urlInput" ng-model="deleteServerData.url"/>
+	  </div>
+	  <div>
+            <h3>Are you sure you want to delete this server?</h3>
+	  </div>
+	</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="deleteServer()">Delete it!</button>
+        <button type="button" class="btn btn-default" ng-click="cancelDeleteServer()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

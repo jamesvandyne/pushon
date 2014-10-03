@@ -1,0 +1,45 @@
+<section>
+  <h2>Servers</h2>
+  <div ng-repeat="record in servers" class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Saved {{ record.save_time_string }}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-2 col-sm-3  text-left" style="border-right: 1px solid #ccc;">
+	    url
+          </div>
+          <div class="col-xs-10 col-sm-6  text-left hard-wrap">
+            {{ record.url }}
+	  </div>
+	</div>
+        <div class="row">
+          <div class="col-xs-2 col-sm-3  text-left" style="border-right: 1px solid #ccc;">
+	    active
+          </div>
+          <div class="col-xs-10 col-sm-6  text-left hard-wrap">
+            {{ record.active }}
+          </div>
+	</div>
+        <div class="row">
+	  <div class="col-xs-6 col-sm-3 form-group">
+	    <button type="button" class="btn btn-lg btn-block btn-primary" ng-click="showEditServerModal(record.url)">Edit
+	    </button>
+	  </div>
+	  <div class="col-xs-6 col-sm-3 form-group">
+	    <button type="button" class="btn btn-lg btn-block btn-primary" ng-click="showDeleteServerModal(record.url)">Delete
+	    </button>
+	  </div>
+	</div>
+        <div class="clearfix visible-xs"></div>
+      </div>
+    </div>
+  </div>
+  <form>
+    <div class="col-xs-9 col-sm-6 form-group">
+      <button type="button" class="btn btn-lg btn-block btn-primary" ng-click="showAddServerModal()">Add a server
+      </button>
+    </div>
+  </form>
+</section>

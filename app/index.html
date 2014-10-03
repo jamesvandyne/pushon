@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="lib/angular-motion/dist/angular-motion.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/custom.css -->
+    <!-- injector:css -->
+    <link rel="stylesheet" href="css/bouncer.css" />
+    <link rel="stylesheet" href="css/customcordova.css" />
+    <!-- endinjector -->
+    <!-- endbuild -->
+</head>
+
+<body>
+<!-- =================== Navigation bar =================== -->
+<header>
+<div class="navbar navbar-default" role="navigation" bs-navbar>
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Push Bouncer</a>
+    <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
+    <ul class="nav navbar-nav">
+      <li data-match-route="^/$"><a href="#!/" ng-click="isCollapsed = true">Home</a></li>
+      <li data-match-route="/notify-control"><a href="#!/notify-control" ng-click="isCollapsed = true">Notifications Control</a></li>
+      <li data-match-route="/bounce-ontrol"><a href="#!/bounce-control" ng-click="isCollapsed = true">Bounce Server Control</a></li>
+    </ul>
+  </div>
+</div>
+</header>
+
+<div role="main">
+    <header class="bs-header text-center hidden-xs" id="overview">
+        <div class="container">
+            <h1 id="app-heading">
+                Urban Airship Push Tester
+            </h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <section id="uiview" ui-view></section>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.main -->
+
+<footer class="footer">
+    <div class="container">
+        <p>Provided to CMG QA by Mutual Mobile and Windhaven Group</p>
+    </div>
+</footer>
+
+<script>
+    window.deviceReadyCalled = false;
+    window.runningInBrowser = true
+    function handleDeviceReady() {
+        if (window.deviceReadyCalled === true) {
+            return;
+        }
+        if (!window.cordova) {
+            window.deviceReadyCalled = true;
+            return;
+        }
+        window.runningInBrowser = false;
+        window.deviceReadyCalled = true;
+        //alert('got device ready');
+        console.log("handleDeviceReady running...");
+
+        console.log("handleDeviceReady complete.");
+    }
+    document.addEventListener('deviceready', handleDeviceReady, false);
+</script>
+<script src="cordova.js"></script>
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="lib/jquery/dist/jquery.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-resource/angular-resource.js"></script>
+<script src="lib/angular-mocks/angular-mocks.js"></script>
+<script src="lib/angular-cookies/angular-cookies.js"></script>
+<script src="lib/angular-animate/angular-animate.js"></script>
+<script src="lib/angular-touch/angular-touch.js"></script>
+<script src="lib/angular-sanitize/angular-sanitize.js"></script>
+<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="lib/angular-ui-utils/ui-utils.js"></script>
+<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="lib/angular-strap/dist/angular-strap.js"></script>
+<script src="lib/angular-strap/dist/angular-strap.tpl.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/custom.js -->
+<!-- injector:js -->
+<script src="js/config.js"></script>
+<script src="js/application.js"></script>
+<script src="modules/core/core.js"></script>
+<script src="modules/notifiers/notifiers.js"></script>
+<script src="modules/core/config/routes.js"></script>
+<script src="modules/notifiers/config/routes.js"></script>
+<script src="modules/notifiers/services/news.js"></script>
+<script src="modules/notifiers/services/push.js"></script>
+<script src="modules/core/controllers/home.js"></script>
+<script src="modules/notifiers/controllers/bounce-mgmt.js"></script>
+<script src="modules/notifiers/controllers/notify-home.js"></script>
+<script src="modules/notifiers/controllers/notify-mgmt.js"></script>
+<!-- endinjector -->
+<!-- endbuild -->
+
+</body>
+</html>

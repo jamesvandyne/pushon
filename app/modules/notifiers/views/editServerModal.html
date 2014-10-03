@@ -1,0 +1,27 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" ng-bind="title"></h4>
+      </div>
+      <!-- <div class="modal-body" ng-bind="content"></div>-->
+      <div class="modal-body">
+	<form>
+	  <div class="form-group">
+            <label for="urlInput">Url</label>
+            <input type="text" class="form-control" id="urlInput" disabled ng-model="editServerData.url"/>
+	  </div>
+	  <div class="form-group">
+            <label for="activeInput">Active</label>
+            <input type="checkbox" class="form-control checkbox" id="activeInput" ng-model="editServerData.active"/>
+	  </div>
+	</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="editServer()">Save it!</button>
+        <button type="button" class="btn btn-default" ng-click="cancelEditServer()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
