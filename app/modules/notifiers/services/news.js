@@ -11,7 +11,6 @@ angular
     .service('News',[
         '$q', '$http', '$rootScope',
         function ($q, $http, $rootScope) {
-            this.prefix = "http:/" + "/search.prod.cmgdigital.com/v2/guid/?g=";
             this.getContentUrl = function (inUrl) {
                 var deferred = $q.defer();
                 $http({
