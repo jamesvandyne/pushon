@@ -89,7 +89,7 @@ angular
                                         var headline = story.headline;
                                         console.log('story ' + headline + " at " + url);
                                         if (url.indexOf("http") !== 0) {
-                                            url = "http:/" + "/" + url
+                                            url = "http://" + url
                                         }
                                         story.fetch_url = url;
                                         msg.newsItem = story;

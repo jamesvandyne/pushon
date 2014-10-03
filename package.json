@@ -53,6 +53,7 @@
     "grunt-ngmin": "~0.0.2",
     "grunt-rev": "~0.1.0",
     "grunt-ripple-emulator": "^0.1.0",
+    "grunt-stripcomments": "git://github.com/kkemple/grunt-stripcomments.git",
     "grunt-svgmin": "~0.2.0",
     "grunt-usemin": "~2.0.0",
     "jasmine-reporters": "~0.4.1",
