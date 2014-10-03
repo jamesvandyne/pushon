@@ -79,7 +79,7 @@ angular
                             save_time_string: saved_msg.save_time_string,
                             newsItem: null
                         };
-                        msg.getNewsItem = function () {
+                        msg.getNewsItem = function (msg) {
                             newsService.getContentUrl(saved_msg.extras.guid).
                                 then(function (search_result) {
                                     var ents = search_result.entities;
@@ -100,11 +100,14 @@ angular
                                     });
                         }
 
-                        $timeout(function () {
-                            msg.getNewsItem();
-                        });
                         $scope.last_ten_messages.push(msg);
                     }
+                    $timeout(function () {
+                        for (var i = 0; i < $scope.last_ten_messages.length; i++) {
+                            var msg = $scope.last_ten_messages[i];
+                            msg.getNewsItem(msg);
+                        }
+                    });
                 }).catch(function(error) {
                     alert(' error' + error);
                 });
