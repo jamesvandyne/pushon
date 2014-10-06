@@ -6,7 +6,7 @@ Urban Airship push testing cordova app
 
 Rationale:
 
-The Urban Airship (UA) push altert support being added to medley
+The Urban Airship (UA) push alert support being added to medley
 presents some barriers to the standard development and QA workflow,
 and this app is designed to overcome those barriers.
 
@@ -42,15 +42,15 @@ accidentally messaging end users, and without the need for CMG Digital
 personnel to have access to production credentials owned by media
 properties.
 
-The simplest use case for this app is for the develper or QA person
+The simplest use case for this app is for the developer or QA person
 who needs to test UA push to load it on an Android device that is
-in their physical posession. Any messages sent using the development/QA
+in their physical possession. Any messages sent using the development/QA
 credentials will reach this device.
 
 In order to simplify the process of testing that the test app itself
 is working, there is a python push sender in "push.py". When supplied
 with the right credentials, this simple python script will create a
-simulated medley alert message and sending it usign the UA push service
+simulated medley alert message and sending it using the UA push service
 API (emulating the medley functionality). If this works, i.e. if running
 it delivers a push to the device on which the test client was installed,
 then the test client is working and the credentials and app ID are
@@ -58,7 +58,7 @@ correct. Any failure to deliver from medley is therefore likely to
 be a problem with the medley integration (or usual problems such as no
 celery queue workers running).
 
-A further feature is avaiable that may be of use for various testing
+A further feature is available that may be of use for various testing
 scenarios. There is a companion web service designed to accept forwarded
 records of the delivered push messages. The app has a "bounce server"
 feature that allows the user to enter the address of a server of this
