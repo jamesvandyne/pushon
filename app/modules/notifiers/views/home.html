@@ -14,6 +14,8 @@
             <p>{{ record.message }}
 	    </p>
 	  </div>
+	</div>
+        <div class="row">
           <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
 	    Pushed GUID
           </div>
@@ -21,6 +23,8 @@
             <p>{{ record.extras.guid }}
 	    </p>
           </div>
+	</div>
+        <div class="row">
           <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
 	    UA push ID
           </div>
@@ -28,6 +32,8 @@
             <p> {{ record.extras["com.urbanairship.push.PUSH_ID"] }}
 	    </p>
           </div>
+	</div>
+        <div class="row">
           <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
 	    Link
           </div>
@@ -35,6 +41,8 @@
             <p> <a href="{{ record.newsItem.fetch_url }}">{{ record.newsItem.headline}}</a>
 	    </p>
           </div>
+	</div>
+        <div class="row">
           <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
 	    Canonical Url
           </div>
@@ -42,6 +50,8 @@
             <p> {{ record.newsItem.canonical_url }}</a>
 	    </p>
           </div>
+	</div>
+        <div class="row">
           <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
 	    Real GUID
           </div>
