@@ -16,9 +16,6 @@
     <preference name="com.urbanairship.in_production" value="false" />
     <preference name="com.urbanairship.enable_push_onlaunch" value="false" />
     <preference name="com.urbanairship.gcm_sender" value="496792742542" />
-    <feature name="Urban Airship Push Notification Plugin">
-        <param name="id" value="com.urbanairship.phonegap.PushNotification" />
-    </feature>
     <feature name="Battery">
         <param name="id" value="org.apache.cordova.battery-status" />
     </feature>
@@ -27,9 +24,6 @@
     </feature>
     <feature name="Contacts">
         <param name="id" value="org.apache.cordova.contacts" />
-    </feature>
-    <feature name="Device">
-        <param name="id" value="org.apache.cordova.device" />
     </feature>
     <feature name="Device Motion">
         <param name="id" value="org.apache.cordova.device-motion" />
