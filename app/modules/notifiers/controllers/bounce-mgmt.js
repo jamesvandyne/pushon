@@ -36,7 +36,7 @@
                     return "none";
                 };
                 $scope.addServerData = {
-                  url: "http:/" + "/localhost:9000/log_push",
+                  url: "http://blooming-beach-4353.herokuapp.com/log_push.html",
                   active: true
                 };
                 var addServerModal = $modal({scope: $scope,

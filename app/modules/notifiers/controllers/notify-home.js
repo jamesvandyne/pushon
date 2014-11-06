@@ -79,8 +79,12 @@ angular
                             save_time_string: saved_msg.save_time_string,
                             newsItem: null
                         };
+                        if (saved_msg.extras.search === undefined) {
+                            saved_msg.extras.search = $rootScope.searchUrl + msg.extras.guid;
+
+                        }
                         msg.getNewsItem = function (msg) {
-                            newsService.getContentUrl(saved_msg.extras.guid).
+                            newsService.getContentUrl(saved_msg.extras.search).
                                 then(function (search_result) {
                                     var ents = search_result.entities;
                                     if (ents.length > 0) {
@@ -99,7 +103,6 @@ angular
                                         alert('got error fetching news!');
                                     });
                         }
-
                         $scope.last_ten_messages.push(msg);
                     }
                     $timeout(function () {

@@ -28,6 +28,7 @@ angular
                     var finish = function () {
                         that.registerForPush();
                         deferred.resolve(true)
+                        $rootScope.searchUrl = "http://search.tie.cmgdigital.com/v2/guid/?g=";
                         that.ready = true;
                     }
                     if (window.deviceReadyCalled === true) {
@@ -271,7 +272,16 @@ angular
                     // Set tags on a device, that you can push to
                     // https://docs.urbanairship.com/display/DOCS/Server%3A+Tag+API
 
-                    PushNotification.setTags(["www.ajc.com", "www.local.ajc.com:8000"], function () {
+                    var tags = [
+                        "www.ajc.com", "www.local.ajc.com:8000",
+                        "www.tie1.ajc.com", "www.tie2.ajc.com", "www.tie3.ajc.com",
+                        "www.ajc.com", "www.local.ajc.com:8000",
+                        "www.tie1.ajc.com", "www.tie2.ajc.com", "www.tie3.ajc.com"
+                    ];
+                    for (var i = 1; i < 200; i++) {
+                        tags.push("www.fe" + i + ".ajc.com");
+                    }
+                    PushNotification.setTags(tags, function () {
                         PushNotification.getTags(function (obj) {
                             obj.tags.forEach(function (tag) {
                                 console.log("Tag: " + tag);

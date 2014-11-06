@@ -22,8 +22,8 @@
                         return pushService.push_type;
                     }
                     $scope.fakeMessageText = {
-                      text: "This is a fake message",
-                      guid: "http:/" + "/bit.ly/1pLV3UO"
+                        text: "This is a fake message",
+                        guid: "https://identifiers.cmgdigital.com/medley/tie2/news.medleystory/2271285/"
                     };
 
                     var fakePushModal = $modal({scope: $scope,
@@ -64,6 +64,33 @@
                     };
                     $scope.cancelClearHistory = function () {
                         clearHistoryModal.hide();
+                    };
+                    $rootScope.searchUrl = "http://search.tie.cmgdigital.com/v2/guid/?g=";
+                    $scope.searchUrlData = {
+                        prod: "http://search.prod.cmgdigital.com/v2/guid/?g=",
+                        tie: "http://search.tie.cmgdigital.com/v2/guid/?g=",
+                        use_prod: false
+                    };
+                    var searchUrlModal = $modal({scope: $scope,
+                        title: "Clear Message History",
+                        template: 'modules/notifiers/views/setSearchUrlModal.html',
+                        show: false,
+                        animation: "am-fade-and-scale",
+                        prefixEvent: "searchUrl"
+                    });
+                    $scope.showSearchUrlModal = function () {
+                        searchUrlModal.$promise.then(searchUrlModal.show);
+                    };
+                    $scope.searchUrl = function () {
+                        searchUrlModal.hide();
+                        if ($scope.searchUrlData.use_prod) {
+                            $rootScope.searchUrl = $scope.searchUrlData.prod;
+                        } else {
+                            $rootScope.searchUrl = $scope.searchUrlData.tie;
+                        }
+                    };
+                    $scope.cancelSearchUrl = function () {
+                        searchUrlModal.hide();
                     };
                     var pushListenerDereg = $rootScope.$on('pushReceived',
                         function(event, messageEvent) {
