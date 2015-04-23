@@ -15,7 +15,12 @@ angular
                     url: '/',
                     templateUrl: 'modules/notifiers/views/home.html',
                     controller: 'NotifyHomeController'
-
+                });
+            $stateProvider
+                .state('messageDetail', {
+                    url: '/detail/:storageIndex',
+                    templateUrl: 'modules/notifiers/views/messageDetail.html',
+                    controller: 'MessageDetailController'
                 });
             $stateProvider
                 .state('notifycntl', {

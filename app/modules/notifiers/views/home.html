@@ -1,67 +1,87 @@
 <section>
-  <h2>Last ten push messages</h2>
-  <div ng-repeat="record in last_ten_messages" class="container">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Saved {{ record.save_time_string }}</h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
-	    message
-          </div>
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left">
-            <p>{{ record.message }}
-	    </p>
-	  </div>
-	</div>
-        <div class="row">
-          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
-	    Pushed GUID
-          </div>
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
-            <p>{{ record.extras.guid }}
-	    </p>
-          </div>
-	</div>
-        <div class="row">
-          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
-	    UA push ID
-          </div>
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
-            <p> {{ record.extras["com.urbanairship.push.PUSH_ID"] }}
-	    </p>
-          </div>
-	</div>
-        <div class="row">
-          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
-	    Link
-          </div>
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
-            <p> <a href="{{ record.newsItem.fetch_url }}">{{ record.newsItem.headline}}</a>
-	    </p>
-          </div>
-	</div>
-        <div class="row">
-          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
-	    Canonical Url
-          </div>
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
-            <p> {{ record.newsItem.canonical_url }}</a>
-	    </p>
-          </div>
-	</div>
-        <div class="row">
-          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
-	    Real GUID
-          </div>
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
-            <p> {{ record.newsItem.guid }}
-	    </p>
-          </div>
-          <div class="clearfix visible-xs"></div>
+    <h2>Last ten push messages</h2>
+
+    <div ng-repeat="record in last_ten_messages" class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Saved {{ record.save_time_string }}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
+                        message
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left">
+                        <p><a href="#!/detail/{{ record.storageIndex }}">{{ record.message }}</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
+                        Pushed GUID
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                        <p>{{ record.extras.guid }}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
+                        UA push ID
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                        <p> {{ record.extras["com.urbanairship.push.PUSH_ID"] }}
+                        </p>
+                    </div>
+                </div>
+                <div ng-switch="record.searchResult">
+                    <div ng-switch-when="ok">
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left"
+                                 style="border-right: 1px solid #ccc;">
+                            <Link>
+                            </div>
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                                <p><a href="{{ record.newsItem.fetch_url }}">{{ record.newsItem.headline}}</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left"
+                                 style="border-right: 1px solid #ccc;">
+                                Canonical Url
+                            </div>
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                                <p> {{ record.newsItem.canonical_url }}</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left"
+                                 style="border-right: 1px solid #ccc;">
+                                Real GUID
+                            </div>
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                                <p> {{ record.newsItem.guid }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="failed">
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left"
+                             style="bottom: ;rder-right: 1px solid #ccc;">
+                            <Result></Result>
+                            </div>
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                                <p><b>The guid was not found at the target search server (indexing problem?) </b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix visible-xs"></div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>

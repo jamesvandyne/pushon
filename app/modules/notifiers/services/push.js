@@ -366,6 +366,30 @@ angular
                 });
                 return deferred.promise;
             };
+            this.getStoredMessage = function (index) {
+                var offset = index -1;
+                var deferred = $q.defer();
+                that.db.transaction(function (transaction) {
+                    var sql = "select message_json, time from messages order by time desc limit 1 offset ?"
+                    transaction.executeSql(sql, [offset],
+                        function (transaction, result) {
+                            var msgs = [];
+                            if (result.rows.length === 1) {
+                                var row = result.rows.item(0);
+                                var message = JSON.parse(row['message_json']);
+                                message.save_time_string = row['time'];
+                                message.save_time = Date.parse(message.save_time_string)
+                                deferred.resolve(message);
+                            } else {
+                                deferred.resolve(null);
+                            }
+                        },
+                        function (transaction, error) {
+                            deferred.reject(error);
+                        });
+                });
+                return deferred.promise;
+            };
             this.addBounceServer = function (url, active) {
                 var deferred = $q.defer();
                 that.db.transaction(function (transaction) {

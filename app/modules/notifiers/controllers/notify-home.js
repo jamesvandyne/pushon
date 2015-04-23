@@ -16,7 +16,8 @@ angular
         '$modal',
         '$location',
         '$timeout',
-        function ($rootScope, $scope, pushService, newsService, $modal, $location, $timeout) {
+        '$stateParams',
+        function ($rootScope, $scope, pushService, newsService, $modal, $location, $timeout, $stateParams) {
 
             var pushHandler = function () {
                 if ($rootScope.newMessages === undefined) {
@@ -34,7 +35,8 @@ angular
                     });
                 }
             }
-            $scope.$on("$viewContentLoaded", function (event, viewConfig) {
+
+            $scope.$on("$viewContentLoaded", function (event) {
                 console.log('view content load captured');
 
                 var p = pushService.dbSetup();
@@ -73,18 +75,19 @@ angular
                     $scope.last_ten_messages = [];
                     for (var i = 0; i < result.length; i++) {
                         var saved_msg = result[i];
-                        var msg = {message: saved_msg.message,
+                        if (saved_msg.extras.search === undefined) {
+                            saved_msg.extras.search = $rootScope.searchUrl + saved_msg.extras.guid;
+                        }
+                        var msg = {
+                            storageIndex: i,
+                            message: saved_msg.message,
                             extras: saved_msg.extras,
                             save_time: saved_msg.save_time,
                             save_time_string: saved_msg.save_time_string,
                             newsItem: null
                         };
-                        if (saved_msg.extras.search === undefined) {
-                            saved_msg.extras.search = $rootScope.searchUrl + msg.extras.guid;
-
-                        }
                         msg.getNewsItem = function (msg) {
-                            newsService.getContentUrl(saved_msg.extras.search).
+                            newsService.getContentUrl(msg.extras.search).
                                 then(function (search_result) {
                                     var ents = search_result.entities;
                                     if (ents.length > 0) {
@@ -97,11 +100,13 @@ angular
                                         }
                                         story.fetch_url = url;
                                         msg.newsItem = story;
+                                        msg.searchResult = "ok";
                                     }
                                 }).catch(
-                                    function (error) {
-                                        alert('got error fetching news!');
-                                    });
+                                function (error) {
+                                    msg.newsItemError = error;
+                                    msg.searchResult = "failed";
+                                });
                         }
                         $scope.last_ten_messages.push(msg);
                     }
