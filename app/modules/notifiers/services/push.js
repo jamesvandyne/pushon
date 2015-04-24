@@ -215,6 +215,20 @@ angular
                 that.dropMessageTable()
                     .then(that.createMessageTable());
             }
+            this.setupWebSocket = function() {
+                var url = "ws://" + document.domain + ":5000/api/push_socket/"
+                var ws = new WebSocket(url);
+                ws.onopen = function () {
+                    console.log("Websocket push registration done ");
+                    that.push_type = "websocket";
+                    that.registered = true;
+                };
+                ws.onmessage = function (msg) {
+                    var jmsg = JSON.parse(msg.data);
+                    console.log("Websocket push: " + jmsg);
+                    that.gotPush(jmsg);
+                }
+            }
             this.registerForPush = function () {
                 if (window.deviceReadyCalled !== true) {
                     return;
@@ -236,8 +250,9 @@ angular
                  }
                  */
 
-
-                if (!window.runningInBrowser) {
+                if (window.runningInBrowser)  {
+                    this.setupWebSocket();
+                } else {
                     document.addEventListener("urbanairship.registration", function (event) {
                         if (event.error) {
                             console.log('there was an error registering for push notifications');
@@ -367,7 +382,7 @@ angular
                 return deferred.promise;
             };
             this.getStoredMessage = function (index) {
-                var offset = index -1;
+                var offset = index;
                 var deferred = $q.defer();
                 that.db.transaction(function (transaction) {
                     var sql = "select message_json, time from messages order by time desc limit 1 offset ?"

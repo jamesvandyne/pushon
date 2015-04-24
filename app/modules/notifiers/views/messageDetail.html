@@ -7,13 +7,13 @@
       <div class="panel-body">
   <div ng-repeat="pair in extras" class="container">
         <div class="row">
-          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left hard-wrap" style="border-right: 1px solid #ccc;">
 	    {{ pair.name }}
           </div>
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left">
-            <p>{{ pair.value }}
-	    </p>
+          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+             <p>{{ pair.value }} </p>
 	  </div>
 	</div>
   </div>
+  <a href="#!/" class="btn btn-primary">Show all</a>
 </section>
