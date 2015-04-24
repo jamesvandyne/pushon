@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Push emulator test subscriber</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="{{ url_for("static", filename="msg_ops.js") }}"></script>
+    <script type="text/javascript">
+     $(document).ready(function(){
+        push_register();
+     });
+    </script>
+  </head>
+  <body>
+    <h3>subscribe to push emulation messages to make sure they they are working</h3>
+    <h4>Status</h4>
+    <div id="con_status">Not connected</div>
+    <ol id="message"></ol>
+  </body>
+</html>

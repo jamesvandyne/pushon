@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Push emulator</title>
+  </head>
+  <body>
+    <a href="subscribe" target="_blank">Subscribe to websocket</a>
+      {% if errors %}
+      <h2>Got errors:</h2>
+      <pre><code>{{ errors }}</code></pre>
+      {% endif %}
+      {% if sent %}
+      <h2>Message queued</h2>
+      <pre><code>{{ sent }}</code></pre>
+      {% endif %}
+      <table>
+	<form id="form1" method="POST" action=".">
+	  <tr>
+	    <td>Put json data here</td><td><textarea name=data cols=120 rows=30>{"message": "",
+  "extras":
+    {"guid": "https://identifiers.cmgdigital.com/medley/tie2/news.medleystory/2271285/"
+    }
+}
+	    </textarea></td>
+	  </tr>
+	  <tr>
+	    <td></td><td><input type=submit value="send" name="send"/></td>
+	  </tr>
+	</form>
+      </table>
+  </body>
+</html>
