@@ -53,13 +53,13 @@ def subscribe():
 def push_socket():
     if request.environ.get('wsgi.websocket'):
         try:
-            print "setting up live websocket for push emulation"
             ws = request.environ['wsgi.websocket']
+            print "set up live websocket for push emulation on socket {0}".format(ws)
         except:
             traceback.print_exc()
         while True:
             message = push_queue.get()
-            print "sending", message
+            print "sending", message, "on {0}".format(ws)
             ws.send(message)
     return
 

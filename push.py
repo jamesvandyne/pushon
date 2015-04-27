@@ -97,4 +97,13 @@ if __name__=="__main__":
         extra = {'guid': only_guid}
 
     sender = UASender(app_key, master_secret)
-    sender.send(blurb="Skakey!", extra_fields=extra)
+
+    extras = {
+        "guid": "https://identifiers.cmgdigital.com/medley/tie2/news.medleystory/2271285/",
+        "alert-title": "Breaking News",
+        "alert-body": "This is a headline so that we can play with the limits",
+        "category": "BRKING",
+        "preview": "Globally unleash principle-centered interfaces whereas extensible e-commerce. Enthusiastically reconceptualize seamless information with extensible interfaces. Synergistically actualize customer directed benefits without client-focused products. Appropriately envisioneer process-centric.",
+        "img": "https://shinetechblog.files.wordpress.com/2014/01/proposal-tool-object-model1.png"
+    }
+    sender.send(blurb="Skakey!", extra_fields=extras)
