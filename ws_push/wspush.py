@@ -27,9 +27,40 @@ def index():
                 extras = x.get('extras', dict())
                 extras['com.urbanairship.push.push_id'] = str(uuid1())
                 x['extras'] = extras
-                data = json.dumps(x, indent=4)
-                push_queue.put(data)
-                context["sent"] = data
+                msg = json.dumps(x, indent=4)
+                push_queue.put(msg)
+                context["sent"] = msg
+                if request.form.has_key('send_both'):
+                    try:
+                        del(extras['event'])
+                    except KeyError:
+                        pass
+                    try:
+                        del(extras['title'])
+                    except KeyError:
+                        pass
+                    try:
+                        del(extras['form'])
+                    except KeyError:
+                        pass
+                    try:
+                        del(extras['subject'])
+                    except KeyError:
+                        pass
+                    try:
+                        del(extras['preview'])
+                    except KeyError:
+                        pass
+                    try:
+                        del(extras['img'])
+                    except KeyError:
+                        pass
+                x['extras'] = extras
+                msg = json.dumps(x, indent=4)
+                push_queue.put(msg)
+                context["sent"] += "\n"
+                context["sent"] += msg
+
             except:
                 context["errors"]=traceback.format_exc()
             x = render_template('index.html', **context)
@@ -59,8 +90,13 @@ def push_socket():
             traceback.print_exc()
         while True:
             message = push_queue.get()
-            print "sending", message, "on {0}".format(ws)
-            ws.send(message)
+            print "sending", message, "\nto {0}".format(ws)
+            try:
+                ws.send(message)
+            except:
+                traceback.print_exc()
+                ws.close()
+                break
     return
 
 

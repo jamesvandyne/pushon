@@ -19,38 +19,53 @@ angular
         '$stateParams',
         function ($rootScope, $scope, pushService, newsService, $modal, $location, $timeout, $stateParams) {
 
+            $scope.modalShowing = false;
             var pushHandler = function () {
+                if ($scope.modalShowing) {
+                    return
+                }
                 if ($rootScope.newMessages === undefined) {
                     $rootScope.newMessages = [];
                 }
                 var message = $rootScope.newMessages.pop();
+
                 if (message !== null && message !== undefined) {
-                    $scope.newMessage = message;
-                    gotPushModal.$promise.then(gotPushModal.show);
-                    $timeout(function () {
-                        gotPushModal.hide();
-                    }, 5000);
+                    $scope.$apply(function () {
+                        $scope.newMessage = message;
+                    });
+                    $scope.modalShowing = true;
+                    gotPushModal.$promise.then(function() {
+                        // need to do this in a timeout because
+                        // the scope object update needs to happen
+                        // with the above changes before the show
+                        // method gets called. $scope.$apply won't do it
+                        // cause it calls digest after the op, not before
+                        $timeout(function () {
+                            gotPushModal.show();
+                        }, 1000);
+                    });
                     $timeout(function () {
                         $scope.get_messages();
-                    });
+                    }, 0);
                 }
             }
 
-            $scope.$on("$viewContentLoaded", function (event) {
-                console.log('view content load captured');
-
-                var p = pushService.dbSetup();
-                p.then(function (value) {
-                    $scope.get_messages();
-                    $timeout(pushHandler);
-                });
-            });
-            $scope.newMessage = null;
             var gotPushModal = $modal({scope: $scope,
                 title: "New push arrived",
                 template: "modules/notifiers/views/newMessageModal.html",
                 show: false,
                 animation: "am-fade-and-scale"
+            });
+
+            $rootScope.$on('modal.hide', function () {
+                console.log('hide');
+                $scope.modalShowing = false;
+                if ($rootScope.newMessages.length > 0) {
+                    // must have had modal up when a message came in
+                    $timeout(function () {
+                        pushHandler()
+                    }, 0);
+                }
             });
             var pushListenerDereg = $rootScope.$on('pushReceived',
                 function (event, messageEvent) {
@@ -78,9 +93,15 @@ angular
                         if (saved_msg.extras.search === undefined) {
                             saved_msg.extras.search = $rootScope.searchUrl + saved_msg.extras.guid;
                         }
+                        if (typeof saved_msg.extras.form === 'undefined') {
+                            saved_msg.form = "short";
+                        } else {
+                            saved_msg.form = saved_msg.extras.form;
+                        }
                         var msg = {
                             storageIndex: i,
                             message: saved_msg.message,
+                            form: saved_msg.form,
                             extras: saved_msg.extras,
                             save_time: saved_msg.save_time,
                             save_time_string: saved_msg.save_time_string,
@@ -121,5 +142,13 @@ angular
                 });
                 return "none";
             }
+            $scope.$on("$viewContentLoaded", function (event) {
+                console.log('view content load captured');
+                var p = pushService.dbSetup();
+                p.then(function (value) {
+                    $scope.get_messages();
+                    $timeout(pushHandler);
+                });
+            });
         }
     ]);

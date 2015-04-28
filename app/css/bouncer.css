@@ -337,3 +337,8 @@ s
 div div div {
     margin-left: 0.5em;
 }
+
+.shorten_col_9 {
+    width: 70%;
+    /* for some reason the 75% value for col-lg-9 etc is just too big */
+}

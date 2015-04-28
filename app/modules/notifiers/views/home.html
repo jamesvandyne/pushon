@@ -9,9 +9,20 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
-                        <a href="#!/detail/{{ record.storageIndex }}">message</a>
+                        Length {{ length }}
                     </div>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+		    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap shorten_col_9">
+			<span ng-switch="record.form">
+			    <p  ng-switch-when="short">Short form, as for pre-iOS8</p>
+			    <p  ng-switch-when="long">Long form, as for iOS8+ and Android</p>
+			    </span>
+		    </div>
+		</div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left" style="border-right: 1px solid #ccc;">
+                        <a href="#!/detail/{{ record.storageIndex }}">message {{ record.storageIndex }}</a>
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap shorten_col_9">
                         <p>{{ record.message }}
                         </p>
                     </div>
@@ -20,7 +31,7 @@
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left hard_wrap" style="border-right: 1px solid #ccc;">
                         Pushed GUID
                     </div>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap shorten_col_9">
                         <p>{{ record.extras.guid }}
                         </p>
                     </div>
@@ -29,7 +40,7 @@
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left hard_wrap" style="border-right: 1px solid #ccc;">
                         UA push ID
                     </div>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap shorten_col_9">
                         <p> {{ record.extras["com.urbanairship.push.PUSH_ID"] }}
                         </p>
                     </div>
@@ -41,7 +52,7 @@
                                  style="border-right: 1px solid #ccc;">
                             <Link>
                             </div>
-                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap shorten_col_9">
                                 <p><a href="{{ record.newsItem.fetch_url }}">{{ record.newsItem.headline}}</a>
                                 </p>
                             </div>
@@ -51,7 +62,7 @@
                                  style="border-right: 1px solid #ccc;">
                                 Canonical Url
                             </div>
-                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap shorten_col_9">
                                 <p> {{ record.newsItem.canonical_url }}</a>
                                 </p>
                             </div>
@@ -61,7 +72,7 @@
                                  style="border-right: 1px solid #ccc;">
                                 Real GUID
                             </div>
-                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap shorten_col_9">
                                 <p> {{ record.newsItem.guid }}
                                 </p>
                             </div>
@@ -70,10 +81,10 @@
                     <div ng-switch-when="failed">
                         <div class="row">
                             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-left hard_wrap"
-                             style="bottom: ;rder-right: 1px solid #ccc;">
-                            <Result></Result>
+				 style="bottom: ;rder-right: 1px solid #ccc;">
+				<Result></Result>
                             </div>
-                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap">
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left hard-wrap shorten_col_9">
                                 <p><b>The guid was not found at the target search server (indexing problem?) </b>
                                 </p>
                             </div>

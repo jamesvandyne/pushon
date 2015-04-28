@@ -225,7 +225,7 @@ angular
                 };
                 ws.onmessage = function (msg) {
                     var jmsg = JSON.parse(msg.data);
-                    console.log("Websocket push: " + jmsg);
+                    console.log("Websocket push: " + msg.data);
                     that.gotPush(jmsg);
                 }
             }
@@ -233,22 +233,6 @@ angular
                 if (window.deviceReadyCalled !== true) {
                     return;
                 }
-                /* var onFSError = function(error) {
-                 alert('got file system init error' + error);
-                 }
-                 var onFSSuccess= function(fileSystem)  {
-                 that.fileSystem = fileSystem;
-                 alert('got file system !');
-                 }
-                 var gotQuota = function(bytes) {
-                 window.webkitRequestFileSystem(window.PERSISTENT, bytes, onFSSuccess, onFSError);
-                 }
-                 if (window.runningInBrowser) {
-                 window.navigator.webkitPersistentStorage.requestQuota(51*1024*1024, gotQuota, onFSError);
-                 } else {
-                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
-                 }
-                 */
 
                 if (window.runningInBrowser)  {
                     this.setupWebSocket();
@@ -291,10 +275,12 @@ angular
                         "www.ajc.com", "www.local.ajc.com:8000",
                         "www.tie1.ajc.com", "www.tie2.ajc.com", "www.tie3.ajc.com",
                         "www.ajc.com", "www.local.ajc.com:8000",
-                        "www.tie1.ajc.com", "www.tie2.ajc.com", "www.tie3.ajc.com"
+                        "www.tie1.ajc.com", "www.tie2.ajc.com", "www.tie3.ajc.com",
+                        "pre8",
                     ];
-                    for (var i = 1; i < 200; i++) {
+                    for (var i = 1; i < 100; i++) {
                         tags.push("www.fe" + i + ".ajc.com");
+                        tags.push("www.fe" + i + ".atlantacmgsite.com");
                     }
                     PushNotification.setTags(tags, function () {
                         PushNotification.getTags(function (obj) {
@@ -326,7 +312,9 @@ angular
                         if (message !== null && message !== undefined
                             && message.message != '') {
                             // app was opened by push, so get the message
-                            alert('incoming!');
+                            if (that.tracking_alerts) {
+                                alert('incoming!');
+                            }
                             that.dbSetup().then(function () {
                                 that.getStoredMessages().then(function (result) {
                                     var found = false;
