@@ -100,9 +100,10 @@ if __name__=="__main__":
 
     extras = {
         "guid": "https://identifiers.cmgdigital.com/medley/tie2/news.medleystory/2271285/",
-        "alert-title": "Breaking News",
-        "alert-body": "This is a headline so that we can play with the limits",
-        "category": "BRKING",
+        "title": "Breaking News",
+        "form": "long",
+        "subject": "This is a headline so that we can play with the limits",
+        "event": "medley_alert",
         "preview": "Globally unleash principle-centered interfaces whereas extensible e-commerce. Enthusiastically reconceptualize seamless information with extensible interfaces. Synergistically actualize customer directed benefits without client-focused products. Appropriately envisioneer process-centric.",
         "img": "https://shinetechblog.files.wordpress.com/2014/01/proposal-tool-object-model1.png"
     }
